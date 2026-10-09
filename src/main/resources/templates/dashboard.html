@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Finance Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1f2937;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: white;
+            background: #ef4444;
+            padding: 9px 18px;
+            border-radius: 6px;
+        }
+
+        .logout:hover {
+            background: #dc2626;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .dashboard-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 11px 22px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .dashboard-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .expense {
+            border-top: 5px solid #ef4444;
+        }
+
+        .budget {
+            border-top: 5px solid #2563eb;
+        }
+
+        .goal {
+            border-top: 5px solid #16a34a;
+        }
+
+        @media (max-width: 800px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Personal Finance Manager</h2>
+
+    <a href="/logout" class="logout">Logout</a>
+
+</div>
+
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome,
+            <span th:text="${session.user.name}">User</span>!
+        </h1>
+
+        <p>
+            Manage your expenses, budgets and financial goals from one place.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <!-- EXPENSES -->
+
+        <div class="card expense">
+
+            <h2>💸 Expenses</h2>
+
+            <p>
+                Add and track your daily expenses and view your expense history.
+            </p>
+
+            <a href="/expenses" class="dashboard-btn">
+                View Expenses
+            </a>
+
+        </div>
+
+
+        <!-- BUDGETS -->
+
+        <div class="card budget">
+
+            <h2>💰 Budgets</h2>
+
+            <p>
+                Create budgets for different categories and manage your spending.
+            </p>
+
+            <a href="/budgets" class="dashboard-btn">
+                View Budgets
+            </a>
+
+        </div>
+
+
+        <!-- FINANCIAL GOALS -->
+
+        <div class="card goal">
+
+            <h2>🎯 Financial Goals</h2>
+
+            <p>
+                Set financial goals and track your progress towards them.
+            </p>
+
+            <a href="/financial-goals" class="dashboard-btn">
+                View Goals
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

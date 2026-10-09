@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Expense - Personal Finance Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1f2937;
+            color: white;
+            padding: 18px 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button, .back-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .back-btn {
+            background: #4b5563;
+            margin-left: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Personal Finance Manager</h2>
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Edit Expense</h1>
+
+        <form action="/expenses/update" method="post">
+
+            <input type="hidden"
+                   name="id"
+                   th:value="${expense.id}">
+
+            <div class="form-group">
+                <label for="amount">Amount (₹)</label>
+
+                <input type="number"
+                       id="amount"
+                       name="amount"
+                       step="0.01"
+                       min="0"
+                       th:value="${expense.amount}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+
+                <select id="category" name="category" required>
+
+                    <option value="Food"
+                            th:selected="${expense.category == 'Food'}">
+                        Food
+                    </option>
+
+                    <option value="Transport"
+                            th:selected="${expense.category == 'Transport'}">
+                        Transport
+                    </option>
+
+                    <option value="Shopping"
+                            th:selected="${expense.category == 'Shopping'}">
+                        Shopping
+                    </option>
+
+                    <option value="Education"
+                            th:selected="${expense.category == 'Education'}">
+                        Education
+                    </option>
+
+                    <option value="Entertainment"
+                            th:selected="${expense.category == 'Entertainment'}">
+                        Entertainment
+                    </option>
+
+                    <option value="Bills"
+                            th:selected="${expense.category == 'Bills'}">
+                        Bills
+                    </option>
+
+                    <option value="Health"
+                            th:selected="${expense.category == 'Health'}">
+                        Health
+                    </option>
+
+                    <option value="Other"
+                            th:selected="${expense.category == 'Other'}">
+                        Other
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+
+                <input type="date"
+                       id="date"
+                       name="date"
+                       th:value="${expense.date}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+
+                <input type="text"
+                       id="description"
+                       name="description"
+                       th:value="${expense.description}">
+            </div>
+
+            <button type="submit">Save Changes</button>
+
+            <a href="/expenses" class="back-btn">Cancel</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
